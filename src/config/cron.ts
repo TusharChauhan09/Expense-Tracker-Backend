@@ -1,10 +1,10 @@
-import cron from "cron";
+import { CronJob } from "cron";
 import https from "https";
 const apiUrl = process.env.API_URL;
 if (!apiUrl) {
   throw new Error("API_URL is not defined in environment variables.");
 }
-const job = new cron.CronJob("*/14 * * * *", function () {
+const job = new CronJob("*/14 * * * *", function () {
   https
     .get(apiUrl, (res) => {
       if (res.statusCode === 200) console.log("GET request sent successfully");
